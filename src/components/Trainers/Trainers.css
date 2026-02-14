@@ -1,0 +1,120 @@
+.trainers {
+    padding: var(--section-padding);
+    background: var(--clr-dark);
+}
+
+.trainers__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.trainers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Card */
+.trainers__card {
+    text-align: center;
+}
+
+.trainers__card-image {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto var(--space-md);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.trainers__card-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+}
+
+.trainers__card-initials {
+    font-family: var(--ff-heading);
+    font-size: 3rem;
+    color: var(--clr-white);
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+}
+
+.trainers__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.trainers__card-image:hover .trainers__card-overlay {
+    opacity: 1;
+}
+
+.trainers__card-socials {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.trainers__card-social {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-white);
+    transition: all var(--transition-fast);
+}
+
+.trainers__card-social:hover {
+    background: var(--clr-accent);
+    border-color: var(--clr-accent);
+    transform: scale(1.1);
+}
+
+.trainers__card-name {
+    font-family: var(--ff-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 0.3rem;
+}
+
+.trainers__card-specialty {
+    font-size: 0.82rem;
+    color: var(--clr-accent);
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .trainers__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .trainers__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trainers__card-image {
+        width: 150px;
+        height: 150px;
+    }
+}
