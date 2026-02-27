@@ -47,8 +47,8 @@
 .contact__field input:focus,
 .contact__field textarea:focus {
     border-color: var(--clr-accent);
-    background: rgba(255, 77, 0, 0.04);
-    box-shadow: 0 0 20px rgba(255, 77, 0, 0.1);
+    background: rgba(245, 197, 24, 0.04);
+    box-shadow: 0 0 20px rgba(245, 197, 24, 0.1);
 }
 
 .contact__field-glow {
@@ -107,7 +107,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 77, 0, 0.1);
+    background: rgba(245, 197, 24, 0.1);
     border-radius: var(--radius-sm);
     color: var(--clr-accent);
     flex-shrink: 0;

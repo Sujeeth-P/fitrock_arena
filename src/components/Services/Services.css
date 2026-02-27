@@ -29,7 +29,7 @@
 
 .services__card:hover {
     transform: translateY(-6px);
-    border-color: rgba(255, 77, 0, 0.3);
+    border-color: rgba(245, 197, 24, 0.3);
     box-shadow: var(--shadow-glow);
 }
 

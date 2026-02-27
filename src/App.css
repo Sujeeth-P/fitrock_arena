@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   z-index: 900;
-  box-shadow: 0 4px 20px rgba(255, 77, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -47,5 +47,5 @@ section+section::before {
   left: 10%;
   right: 10%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.15), transparent);
 }

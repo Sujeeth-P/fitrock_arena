@@ -9,8 +9,8 @@
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 10% 90%, rgba(255, 77, 0, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 90% 10%, rgba(232, 28, 28, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse at 10% 90%, rgba(245, 197, 24, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(230, 184, 0, 0.04) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -205,7 +205,7 @@
 
 .results__testimonial-dot--active {
     background: var(--clr-accent);
-    box-shadow: 0 0 10px rgba(255, 77, 0, 0.4);
+    box-shadow: 0 0 10px rgba(245, 197, 24, 0.4);
 }
 
 /* Responsive */

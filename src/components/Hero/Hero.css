@@ -18,9 +18,9 @@
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 20% 50%, rgba(255, 77, 0, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(232, 28, 28, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(255, 77, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 50%, rgba(245, 197, 24, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(230, 184, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(245, 197, 24, 0.06) 0%, transparent 50%),
         linear-gradient(180deg, #0a0a0a 0%, #050505 50%, #0a0a0a 100%);
     animation: slowZoom 20s ease-in-out infinite alternate;
 }
@@ -53,8 +53,8 @@
 .hero__badge {
     display: inline-block;
     padding: 0.5rem 1.2rem;
-    background: rgba(255, 77, 0, 0.1);
-    border: 1px solid rgba(255, 77, 0, 0.3);
+    background: rgba(245, 197, 24, 0.1);
+    border: 1px solid rgba(245, 197, 24, 0.3);
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 700;
@@ -204,8 +204,8 @@
     .hero__stat-number {
         font-size: 1.6rem;
     }
-    
-    .hero__title{
+
+    .hero__title {
         margin-top: 12%;
     }
 
@@ -220,7 +220,8 @@
         flex-direction: column;
         gap: var(--space-sm);
     }
-    .hero__title{
+
+    .hero__title {
         margin-top: 12%;
     }
 

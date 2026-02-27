@@ -33,9 +33,9 @@
 }
 
 .plans__card--highlighted {
-    border-color: rgba(255, 77, 0, 0.4);
-    background: linear-gradient(180deg, rgba(255, 77, 0, 0.06) 0%, rgba(17, 17, 17, 0.9) 100%);
-    box-shadow: 0 0 40px rgba(255, 77, 0, 0.1);
+    border-color: rgba(245, 197, 24, 0.4);
+    background: linear-gradient(180deg, rgba(245, 197, 24, 0.06) 0%, rgba(17, 17, 17, 0.9) 100%);
+    box-shadow: 0 0 40px rgba(245, 197, 24, 0.1);
     transform: scale(1.03);
 }
 
