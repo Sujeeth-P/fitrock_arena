@@ -1,0 +1,283 @@
+/* ============================================
+   CONSTRUCTION PAGE
+   ============================================ */
+
+/* ---------- INTRO ---------- */
+.construction-intro {
+    padding: var(--section-padding);
+    background: var(--clr-dark);
+}
+
+.construction-intro__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+}
+
+.construction-intro__content p {
+    color: var(--clr-light-gray);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+}
+
+.construction-intro__stats {
+    display: flex;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.construction-intro__stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.construction-intro__stat-number {
+    font-family: var(--ff-heading);
+    font-size: 2.5rem;
+    color: var(--clr-accent);
+}
+
+.construction-intro__stat-label {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-light-gray);
+}
+
+.construction-intro__image {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.construction-intro__image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+
+/* ---------- SERVICES ---------- */
+.construction-services {
+    padding: var(--section-padding);
+    background: var(--clr-black);
+}
+
+.construction-services__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.construction-services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.construction-services__card {
+    background: var(--clr-dark-gray);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl) var(--space-lg);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.construction-services__card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-base);
+}
+
+.construction-services__card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 77, 0, 0.15);
+}
+
+.construction-services__card:hover::after {
+    transform: scaleX(1);
+}
+
+.construction-services__card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.construction-services__card-title {
+    font-family: var(--ff-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: none;
+    margin-bottom: var(--space-xs);
+}
+
+.construction-services__card-desc {
+    font-size: var(--fs-small);
+    color: var(--clr-light-gray);
+    line-height: 1.7;
+}
+
+
+/* ---------- PROCESS ---------- */
+.construction-process {
+    padding: var(--section-padding);
+    background: var(--clr-dark);
+    background-image: radial-gradient(circle at 20% 50%, rgba(255, 77, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 77, 0, 0.02) 0%, transparent 50%);
+    background-size: 100% 100%;
+    background-position: center 0%;
+}
+
+.construction-process__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.construction-process__timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.construction-process__item {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    position: relative;
+}
+
+.construction-process__step-number {
+    font-family: var(--ff-heading);
+    font-size: 3rem;
+    color: var(--clr-accent);
+    opacity: 0.4;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 70px;
+    text-align: center;
+}
+
+.construction-process__step-content {
+    background: var(--clr-dark-gray);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    flex: 1;
+    transition: all var(--transition-base);
+}
+
+.construction-process__step-content:hover {
+    border-color: rgba(255, 77, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.construction-process__step-content h3 {
+    font-family: var(--ff-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: none;
+    margin-bottom: 0.3rem;
+}
+
+.construction-process__step-content p {
+    font-size: var(--fs-small);
+    color: var(--clr-light-gray);
+    line-height: 1.7;
+}
+
+.construction-process__connector {
+    position: absolute;
+    left: 35px;
+    top: 56px;
+    bottom: -24px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(255, 77, 0, 0.3), rgba(255, 77, 0, 0.05));
+}
+
+
+/* ---------- CTA ---------- */
+.construction-cta {
+    padding: var(--space-3xl) 0;
+    background: var(--clr-black);
+    text-align: center;
+}
+
+.construction-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.construction-cta__title {
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-md);
+}
+
+.construction-cta__title span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.construction-cta__desc {
+    font-size: var(--fs-body);
+    color: var(--clr-light-gray);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .construction-intro__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .construction-intro__image img {
+        height: 300px;
+    }
+
+    .construction-services__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .construction-intro__stats {
+        gap: var(--space-lg);
+    }
+}
+
+@media (max-width: 600px) {
+    .construction-services__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .construction-process__item {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .construction-process__step-number {
+        width: auto;
+        text-align: left;
+    }
+
+    .construction-process__connector {
+        display: none;
+    }
+}

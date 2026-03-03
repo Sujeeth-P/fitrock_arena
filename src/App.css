@@ -7,16 +7,16 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-sm);
   background: var(--gradient-accent);
   color: var(--clr-white);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 900;
-  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3);
+  box-shadow: 0 4px 20px rgba(255, 77, 0, 0.3);
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -34,18 +34,7 @@
   box-shadow: var(--shadow-glow-strong);
 }
 
-/* Smooth section transitions */
-section {
-  position: relative;
-}
-
-/* Subtle divider between sections */
-section+section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.15), transparent);
+/* Page transition */
+main {
+  min-height: 100vh;
 }

@@ -1,94 +1,73 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const NAV_LINKS = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'Programs', href: '#services' },
-    { label: 'Results', href: '#results' },
-    { label: 'Plans', href: '#plans' },
-    { label: 'Trainers', href: '#trainers' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Climbing', to: '/climbing' },
+    { label: 'Construction', to: '/construction' },
+    { label: 'Contact', to: '/contact' },
 ];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('hero');
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 60);
+            setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Track active section based on scroll position
+    // Close mobile menu on route change
     useEffect(() => {
-        const sectionIds = NAV_LINKS.map(l => l.href.replace('#', ''));
-
-        const handleScrollActive = () => {
-            const scrollY = window.scrollY + 120; // offset for navbar height
-            let current = sectionIds[0];
-
-            for (const id of sectionIds) {
-                const el = document.getElementById(id);
-                if (el && el.offsetTop <= scrollY) {
-                    current = id;
-                }
-            }
-
-            setActiveSection(current);
-        };
-
-        window.addEventListener('scroll', handleScrollActive, { passive: true });
-        handleScrollActive(); // run once on mount
-
-        return () => window.removeEventListener('scroll', handleScrollActive);
-    }, []);
-
-    const handleNavClick = (e, href) => {
-        e.preventDefault();
         setMobileOpen(false);
-        const el = document.querySelector(href);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    }, [location.pathname]);
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        document.body.style.overflow = mobileOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileOpen]);
 
     return (
         <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
             <div className="navbar__inner container">
-                <a href="#hero" className="navbar__logo" onClick={(e) => handleNavClick(e, '#hero')}>
-                    {/* <span className="navbar__logo-icon">⚡</span> */}
+                <Link to="/" className="navbar__logo">
                     <span className="navbar__logo-text">FITROCK</span>
                     <span className="navbar__logo-sub">ARENA</span>
-                </a>
+                </Link>
 
+                {/* Desktop + Mobile links */}
                 <ul className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
                     {NAV_LINKS.map((link) => (
-                        <li key={link.href}>
-                            <a
-                                href={link.href}
-                                className={`navbar__link ${activeSection === link.href.replace('#', '') ? 'navbar__link--active' : ''}`}
-                                onClick={(e) => handleNavClick(e, link.href)}
+                        <li key={link.to}>
+                            <NavLink
+                                to={link.to}
+                                className={({ isActive }) =>
+                                    `navbar__link ${isActive ? 'navbar__link--active' : ''}`
+                                }
+                                end={link.to === '/'}
                             >
                                 {link.label}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                     <li className="navbar__cta-mobile">
-                        <a href="#contact" className="btn btn-primary" onClick={(e) => handleNavClick(e, '#contact')}>
-                            Join Now
-                        </a>
+                        <Link to="/contact" className="btn btn-primary">
+                            Get in Touch
+                        </Link>
                     </li>
                 </ul>
 
-                <a href="#contact" className="btn btn-primary navbar__cta-desktop" onClick={(e) => handleNavClick(e, '#contact')}>
-                    Join Now
-                </a>
+                <Link to="/contact" className="btn btn-primary navbar__cta-desktop">
+                    Get in Touch
+                </Link>
 
                 <button
                     className={`navbar__hamburger ${mobileOpen ? 'navbar__hamburger--open' : ''}`}

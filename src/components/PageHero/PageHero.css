@@ -1,0 +1,80 @@
+/* ============================================
+   PAGE HERO (Reusable inner page banner)
+   ============================================ */
+
+.page-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: var(--navbar-height);
+}
+
+.page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.7) 60%,
+            rgba(0, 0, 0, 0.95) 100%);
+    opacity: 0;
+}
+
+.page-hero__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: var(--space-2xl);
+}
+
+.page-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-small);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    opacity: 0;
+}
+
+.page-hero__breadcrumb a {
+    color: var(--clr-accent);
+    transition: color var(--transition-fast);
+}
+
+.page-hero__breadcrumb a:hover {
+    color: var(--clr-accent-light);
+}
+
+.page-hero__breadcrumb-sep {
+    color: var(--clr-light-gray);
+}
+
+.page-hero__breadcrumb span:last-child {
+    color: var(--clr-light-gray);
+}
+
+.page-hero__line {
+    height: 3px;
+    background: var(--gradient-accent);
+    margin-bottom: var(--space-md);
+    border-radius: 2px;
+    width: 0;
+}
+
+.page-hero__title {
+    font-size: var(--fs-h1);
+    color: var(--clr-white);
+    opacity: 0;
+}
+
+.page-hero__subtitle {
+    font-size: var(--fs-body);
+    color: var(--clr-light-gray);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-top: var(--space-sm);
+    opacity: 0;
+}

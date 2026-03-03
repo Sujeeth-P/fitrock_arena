@@ -1,28 +1,36 @@
 import { useState, useEffect } from 'react';
-import { useScrollReveal } from './hooks/useScrollReveal';
-import { useScrollProgress } from './hooks/useScrollProgress';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import About from './components/About/About';
-import Services from './components/Services/Services';
-import Results from './components/Results/Results';
-import Plans from './components/Plans/Plans';
-import Trainers from './components/Trainers/Trainers';
-import Gallery from './components/Gallery/Gallery';
-import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Climbing from './pages/Climbing/Climbing';
+import Construction from './pages/Construction/Construction';
+import Contact from './pages/Contact/Contact';
 import './App.css';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const scrollProgress = useScrollProgress();
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const location = useLocation();
 
+  /* Loading Screen */
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  useScrollReveal();
+  /* Scroll Progress */
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
   return (
     <>
@@ -37,25 +45,25 @@ export default function App() {
       {/* Scroll Progress Bar */}
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }}></div>
 
-      {/* Navbar */}
+      {/* Always-present Navbar */}
       <Navbar />
+      <ScrollToTop />
 
-      {/* Sections */}
+      {/* Page Routes */}
       <main>
-        <Hero />
-        <About />
-        <Services />
-        <Results />
-        <Plans />
-        <Trainers />
-        <Gallery />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/climbing" element={<Climbing />} />
+          <Route path="/construction" element={<Construction />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Back to top button */}
+      {/* Back to Top */}
       <BackToTop show={scrollProgress > 10} />
     </>
   );

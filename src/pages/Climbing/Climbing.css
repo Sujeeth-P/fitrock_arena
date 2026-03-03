@@ -1,0 +1,294 @@
+/* ============================================
+   CLIMBING PAGE
+   ============================================ */
+
+/* ---------- FACILITIES ---------- */
+.climbing-facilities {
+    padding: var(--section-padding);
+    background: var(--clr-dark);
+}
+
+.climbing-facilities__header {
+    margin-bottom: var(--space-2xl);
+}
+
+.climbing-facilities__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.climbing-facility {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.climbing-facility:nth-child(even) {
+    direction: rtl;
+}
+
+.climbing-facility:nth-child(even)>* {
+    direction: ltr;
+}
+
+.climbing-facility__image {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.climbing-facility__image img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.climbing-facility__image:hover img {
+    transform: scale(1.05);
+}
+
+.climbing-facility__overlay {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    width: 56px;
+    height: 56px;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.climbing-facility__icon {
+    font-size: 1.5rem;
+}
+
+.climbing-facility__title {
+    font-family: var(--ff-body);
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: none;
+    margin-bottom: var(--space-sm);
+}
+
+.climbing-facility__desc {
+    font-size: var(--fs-body);
+    color: var(--clr-light-gray);
+    line-height: 1.8;
+}
+
+
+/* ---------- FEATURES ---------- */
+.climbing-features {
+    padding: var(--section-padding);
+    background: var(--clr-black);
+}
+
+.climbing-features__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.climbing-features__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+
+.climbing-features__item {
+    background: var(--clr-dark-gray);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    transition: all var(--transition-base);
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+}
+
+.climbing-features__item:hover {
+    border-color: rgba(255, 77, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.climbing-features__number {
+    font-family: var(--ff-heading);
+    font-size: 1.6rem;
+    color: var(--clr-accent);
+    opacity: 0.6;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.climbing-features__title {
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: none;
+    margin-bottom: 0.3rem;
+}
+
+.climbing-features__desc {
+    font-size: var(--fs-small);
+    color: var(--clr-light-gray);
+    line-height: 1.6;
+}
+
+
+/* ---------- GALLERY ---------- */
+.climbing-gallery {
+    padding: var(--section-padding);
+    background: var(--clr-dark);
+}
+
+.climbing-gallery__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.climbing-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: var(--space-sm);
+}
+
+.climbing-gallery__item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.climbing-gallery__item--tall {
+    grid-row: span 2;
+}
+
+.climbing-gallery__item--wide {
+    grid-column: span 2;
+}
+
+.climbing-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.climbing-gallery__item:hover img {
+    transform: scale(1.08);
+}
+
+.climbing-gallery__item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-md);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.climbing-gallery__item:hover .climbing-gallery__item-overlay {
+    opacity: 1;
+}
+
+.climbing-gallery__item-overlay span {
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------- CTA ---------- */
+.climbing-cta {
+    padding: var(--space-3xl) 0;
+    background: var(--clr-black);
+    text-align: center;
+}
+
+.climbing-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.climbing-cta__title {
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-md);
+}
+
+.climbing-cta__title span {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.climbing-cta__desc {
+    font-size: var(--fs-body);
+    color: var(--clr-light-gray);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+}
+
+.climbing-cta__buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .climbing-facility {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .climbing-facility:nth-child(even) {
+        direction: ltr;
+    }
+
+    .climbing-facility__image img {
+        height: 280px;
+    }
+
+    .climbing-features__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .climbing-gallery__grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+    }
+
+    .climbing-gallery__item--wide {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .climbing-features__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .climbing-gallery__grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+    }
+
+    .climbing-gallery__item--tall {
+        grid-row: span 1;
+    }
+}
