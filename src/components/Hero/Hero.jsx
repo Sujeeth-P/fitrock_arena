@@ -1,5 +1,6 @@
 import './Hero.css';
-
+import { AnimatedText } from '@/components/ui/animated-underline-text-one';
+import { ArrowRight } from 'lucide-react';
 export default function Hero() {
     const handleScroll = (e, target) => {
         e.preventDefault();
@@ -23,16 +24,26 @@ export default function Hero() {
                 ))}
             </div>
 
-            <div className="hero__bg">
-                <div className="hero__bg-gradient"></div>
+            <div className="hero__bg" style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}>
+                <div className="hero__bg-gradient" style={{ width: '100%', height: '100%', background: 'linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4))' }}></div>
             </div>
 
             <div className="hero__content container">
                 {/* <div className="hero__badge">🔥 PREMIUM FITNESS EXPERIENCE</div> */}
-                <h1 className="hero__title">
-                    FORGE YOUR <br />
-                    <span className="hero__title-accent">STRONGEST</span> SELF
-                </h1>
+                <div className="hero__title" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                    <AnimatedText
+                        text="FORGE YOUR STRONGEST SELF"
+                        textClassName="hero__title"
+                        underlineClassName="text-accent"
+                        underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"
+                        underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
+                        underlineDuration={1.5}
+                    />
+                </div>
                 <p className="hero__subtitle">
                     Push beyond limits. Train with elite coaches. Transform your body and mind
                     at the most advanced fitness arena in the city.
@@ -40,9 +51,7 @@ export default function Hero() {
                 <div className="hero__cta-group">
                     <a href="#contact" className="btn btn-primary btn-pulse hero__cta" onClick={(e) => handleScroll(e, '#contact')}>
                         <span>Join Now</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
+                        <ArrowRight size={16} strokeWidth={2.5} />
                     </a>
                     <a href="#services" className="btn btn-secondary hero__cta" onClick={(e) => handleScroll(e, '#services')}>
                         Explore Programs

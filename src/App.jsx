@@ -8,6 +8,7 @@ import About from './pages/About/About';
 import Climbing from './pages/Climbing/Climbing';
 import Construction from './pages/Construction/Construction';
 import Contact from './pages/Contact/Contact';
+import { AnimatedText } from '@/components/ui/animated-underline-text-one';
 import './App.css';
 
 export default function App() {
@@ -36,10 +37,14 @@ export default function App() {
     <>
       {/* Loading Screen */}
       <div className={`loading-screen ${!loading ? 'hidden' : ''}`}>
-        <div className="loading-logo">FITROCK ARENA</div>
-        <div className="loading-bar">
-          <div className="loading-bar-inner"></div>
-        </div>
+        <AnimatedText
+          text="FITROCK ARENA"
+          textClassName="loading-logo"
+          underlineClassName="text-accent"
+          underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"
+          underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
+          underlineDuration={1.5}
+        />
       </div>
 
       {/* Scroll Progress Bar */}
