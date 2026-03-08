@@ -94,6 +94,8 @@ body {
   line-height: 1.7;
   font-size: var(--fs-body);
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 img {
@@ -406,20 +408,7 @@ h6 {
 
 /* --- Scrollbar --- */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--clr-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--clr-mid-gray);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-accent);
+  display: none;
 }
 
 /* --- Responsive --- */

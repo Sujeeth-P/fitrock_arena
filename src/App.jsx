@@ -45,6 +45,7 @@ export default function App() {
           underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
           underlineDuration={1.5}
         />
+        
       </div>
 
       {/* Scroll Progress Bar */}
