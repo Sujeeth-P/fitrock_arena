@@ -2,7 +2,18 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ZoomParallax } from '@/components/ui/zoom-parallax';
 import './Home.css';
+
+const PARALLAX_IMAGES = [
+    { src: '/fitrock_arena/images/hero-bg.png', alt: 'FitRock Arena climbing wall' },
+    { src: '/fitrock_arena/images/climbing-1.png', alt: 'Indoor climbing session' },
+    { src: '/fitrock_arena/images/about-bg.png', alt: 'FitRock Arena facility' },
+    { src: '/fitrock_arena/images/construction-bg.png', alt: 'Wall construction' },
+    { src: '/fitrock_arena/images/climbing-2.png', alt: 'Climber in action' },
+    { src: '/fitrock_arena/images/about-team.png', alt: 'FitRock team' },
+    { src: '/fitrock_arena/images/construction-process.png', alt: 'Construction process' },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -157,7 +168,7 @@ export default function Home() {
                         </Link>
                     </div>
 
-                    <div className="home-hero__stats">
+                    {/* <div className="home-hero__stats">
                         <div className="home-hero__stat">
                             <span className="home-hero__stat-number">500+</span>
                             <span className="home-hero__stat-label">Active Climbers</span>
@@ -172,16 +183,21 @@ export default function Home() {
                             <span className="home-hero__stat-number">15K</span>
                             <span className="home-hero__stat-label">Sq. Ft. Arena</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
-                <div className="home-hero__scroll">
+                {/* <div className="home-hero__scroll">
                     <div className="home-hero__scroll-mouse">
                         <div className="home-hero__scroll-wheel"></div>
                     </div>
                     <span>Scroll Down</span>
-                </div>
+                </div> */}
             </section>
+
+            {/* ===== ZOOM PARALLAX GALLERY ===== */}
+            <div style={{ background: 'var(--clr-dark)' }}>
+                <ZoomParallax images={PARALLAX_IMAGES} />
+            </div>
 
             {/* ===== ABOUT PREVIEW ===== */}
             <section className="home-about" ref={aboutRef}>
