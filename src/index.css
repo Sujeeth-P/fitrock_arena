@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* --- Tailwind v4 Theme (shadcn compatibility) --- */
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-card: #111111;
+  --color-card-foreground: #ffffff;
+  --color-primary: #FF4D00;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #f0f0f0;
+  --color-muted: #2a2a2a;
+  --color-muted-foreground: #888888;
+  --color-destructive: #E63915;
+  --color-destructive-foreground: #ffffff;
+  --color-ring: #FF4D00;
+}
+
 /* ============================================
    FITROCK ARENA — GLOBAL DESIGN SYSTEM
    ============================================ */
@@ -168,7 +185,7 @@ h6 {
 .section-title {
   font-size: var(--fs-h1);
   margin-bottom: var(--space-md);
-  color: var(--clr-white);
+  color: currentColor;
 }
 
 .section-title span {

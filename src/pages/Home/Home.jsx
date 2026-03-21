@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ZoomParallax } from '@/components/ui/zoom-parallax';
+import FeatureSection from '@/components/ui/feature-sectionn';
+import HeroTiles from '../../components/HeroTiles/HeroTiles';
 import './Home.css';
 
 const PARALLAX_IMAGES = [
-    { src: '/fitrock_arena/images/hero-bg.png', alt: 'FitRock Arena climbing wall' },
+    { src: '/fitrock_arena/images/hero-bg.jpg', alt: 'FitRock Arena climbing wall' },
     { src: '/fitrock_arena/images/climbing-1.png', alt: 'Indoor climbing session' },
     { src: '/fitrock_arena/images/about-bg.png', alt: 'FitRock Arena facility' },
     { src: '/fitrock_arena/images/construction-bg.png', alt: 'Wall construction' },
@@ -101,6 +103,49 @@ export default function Home() {
                 }
             );
 
+            // Construction section: white → black background merge on scroll
+            const constructionSection = document.querySelector('.home-construction');
+            if (constructionSection) {
+                const colorTrigger = {
+                    trigger: constructionSection,
+                    start: 'top 80%',
+                    end: 'center 60%',
+                    scrub: 1,
+                };
+                gsap.to(constructionSection, {
+                    backgroundColor: '#000000',
+                    color: '#ffffff',
+                    ease: 'power1.inOut',
+                    scrollTrigger: colorTrigger,
+                });
+                gsap.to('.home-construction .section-label', {
+                    color: '#ffffff',
+                    ease: 'power1.inOut',
+                    scrollTrigger: { ...colorTrigger },
+                });
+                gsap.to('.home-construction .section-title', {
+                    color: '#ffffff',
+                    ease: 'power1.inOut',
+                    scrollTrigger: { ...colorTrigger },
+                });
+                gsap.to('.home-construction__desc', {
+                    color: 'rgba(255, 255, 255, 0.75)',
+                    ease: 'power1.inOut',
+                    scrollTrigger: { ...colorTrigger },
+                });
+                // Fade out the top gradient early before bg gets dark
+                gsap.to('.home-construction__top-fade', {
+                    opacity: 0,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: constructionSection,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        scrub: 1,
+                    },
+                });
+            }
+
             // CTA Section
             gsap.fromTo('.home-cta__content > *',
                 { opacity: 0, y: 40 },
@@ -109,18 +154,6 @@ export default function Home() {
                     scrollTrigger: { trigger: '.home-cta', start: 'top 80%' }
                 }
             );
-
-            // Parallax effects
-            gsap.to('.home-hero__bg img', {
-                yPercent: 20,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.home-hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true,
-                }
-            });
         });
         return () => ctx.revert();
     }, []);
@@ -129,10 +162,8 @@ export default function Home() {
         <>
             {/* ===== HERO ===== */}
             <section className="home-hero" ref={heroRef}>
-                <div className="home-hero__bg">
-                    <img src="/fitrock_arena/images/hero-bg.png" alt="" aria-hidden="true" />
-                    <div className="home-hero__overlay"></div>
-                </div>
+                <HeroTiles />
+                <div className="home-hero__overlay"></div>
 
                 <div className="home-hero__particles">
                     {[...Array(15)].map((_, i) => (
@@ -292,8 +323,12 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* ===== FEATURE / CONSTRUCTION SHOWCASE ===== */}
+            {/* <FeatureSection /> */}
+
             {/* ===== CONSTRUCTION PREVIEW ===== */}
             <section className="home-construction" ref={constructionRef}>
+                <div className="home-construction__top-fade"></div>
                 <div className="home-construction__inner container">
                     <div className="home-construction__content">
                         <span className="section-label">Wall Construction</span>
@@ -303,7 +338,8 @@ export default function Home() {
                             construction company. We design, engineer, and build professional-grade climbing
                             walls for gyms, schools, and events across India.
                         </p>
-                        <ul className="home-construction__list">
+                        <FeatureSection />
+                        {/* <ul className="home-construction__list">
                             <li>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
                                 Custom wall design & engineering
@@ -320,7 +356,7 @@ export default function Home() {
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
                                 End-to-end project management
                             </li>
-                        </ul>
+                        </ul> */}
                         <Link to="/construction" className="btn btn-primary">
                             Explore Construction
                         </Link>

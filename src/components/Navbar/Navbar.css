@@ -49,6 +49,12 @@
     color: var(--clr-accent);
 }
 
+.navbar__logo-img {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
 /* Desktop Links */
 .navbar__links {
     display: flex;

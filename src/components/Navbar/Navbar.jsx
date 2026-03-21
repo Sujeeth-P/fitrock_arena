@@ -39,8 +39,11 @@ export default function Navbar() {
         <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
             <div className="navbar__inner container">
                 <Link to="/" className="navbar__logo">
-                    <span className="navbar__logo-text">FITROCK</span>
-                    <span className="navbar__logo-sub">ARENA</span>
+                    <img
+                        src="/fitrock_arena/images/fitrock.png"
+                        alt="FitRock Arena Logo"
+                        className="navbar__logo-img"
+                    />
                 </Link>
 
                 {/* Desktop + Mobile links */}
