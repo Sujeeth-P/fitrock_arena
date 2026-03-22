@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Timeline } from '@/components/ui/timeline';
 import PageHero from '../../components/PageHero/PageHero';
 import './About.css';
 
@@ -88,6 +89,59 @@ export default function About() {
         return () => ctx.revert();
     }, []);
 
+    const timelineData = MILESTONES.map((m, index) => {
+        const images = [
+            [
+                "/fitrock_arena/images/climbing-1.png",
+                "/fitrock_arena/images/construction-bg.png"
+            ],
+            [
+                "/fitrock_arena/images/climbing-2.png",
+                "/fitrock_arena/images/about-bg.png"
+            ],
+            [
+                "/fitrock_arena/images/about-team.png",
+                "/fitrock_arena/images/climb_up.jpg"
+            ],
+            [
+                "/fitrock_arena/images/climbing-bg.png",
+                "/fitrock_arena/images/hero-bg.jpg"
+            ],
+            [
+                "/fitrock_arena/images/up2.jpg",
+                "/fitrock_arena/images/contact-bg.png"
+            ]
+        ];
+
+        return {
+            title: m.year,
+            content: (
+                <div style={{ paddingTop: '0.5rem' }}>
+                    <h3 className="text-white text-lg md:text-2xl font-bold uppercase" style={{ marginBottom: '1rem' }}>
+                        {m.title}
+                    </h3>
+                    <p className="text-neutral-400 text-sm md:text-base font-normal" style={{ marginBottom: '2rem', lineHeight: '1.8' }}>
+                        {m.desc}
+                    </p>
+                    <div className="grid grid-cols-2" style={{ gap: '1.5rem' }}>
+                        <img
+                            src={images[index % images.length][0]}
+                            alt="Climbing preview"
+                            className="rounded-lg object-cover w-full shadow-md"
+                            style={{ height: '280px' }}
+                        />
+                        <img
+                            src={images[index % images.length][1]}
+                            alt="Building preview"
+                            className="rounded-lg object-cover w-full shadow-md"
+                            style={{ height: '280px' }}
+                        />
+                    </div>
+                </div>
+            )
+        };
+    });
+
     return (
         <>
             <PageHero
@@ -146,28 +200,8 @@ export default function About() {
             </section>
 
             {/* Timeline */}
-            <section className="about-timeline">
-                <div className="about-timeline__inner container">
-                    <div className="about-timeline__header">
-                        <span className="section-label">Our Journey</span>
-                        <h2 className="section-title">KEY <span>MILESTONES</span></h2>
-                    </div>
-                    <div className="about-timeline__track">
-                        {MILESTONES.map((m, i) => (
-                            <div className="about-timeline__item" key={i}>
-                                <div className="about-timeline__marker">
-                                    <div className="about-timeline__dot"></div>
-                                    {i < MILESTONES.length - 1 && <div className="about-timeline__line"></div>}
-                                </div>
-                                <div className="about-timeline__card">
-                                    <span className="about-timeline__year">{m.year}</span>
-                                    <h3 className="about-timeline__title">{m.title}</h3>
-                                    <p className="about-timeline__desc">{m.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <section className="about-timeline w-full">
+                <Timeline data={timelineData} />
             </section>
 
             {/* Team Section */}

@@ -1,19 +1,73 @@
-import { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FloatingDock } from '../ui/floating-dock';
+import {
+    IconHome,
+    IconInfoCircle,
+    IconMountain,
+    IconBuildingBridge2,
+    IconMail,
+} from '@tabler/icons-react';
 import './Navbar.css';
 
-const NAV_LINKS = [
-    { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
-    { label: 'Climbing', to: '/climbing' },
-    { label: 'Construction', to: '/construction' },
-    { label: 'Contact', to: '/contact' },
+const DOCK_LINKS = [
+    {
+        title: 'FitRock Arena',
+        icon: (
+            <img
+                src="/fitrock_arena/images/fitrock.png"
+                alt="FitRock Arena"
+                className="h-full w-full object-contain"
+
+            />
+        ),
+        href: '/',
+    },
+    {
+        title: 'Home',
+        icon: <IconHome className="h-full w-full text-neutral-300" />,
+        href: '/',
+    },
+    {
+        title: 'About',
+        icon: <IconInfoCircle className="h-full w-full text-neutral-300" />,
+        href: '/about',
+    },
+    {
+        title: 'Climbing',
+        icon: <IconMountain className="h-full w-full text-neutral-300" />,
+        href: '/climbing',
+    },
+    {
+        title: 'Construction',
+        icon: <IconBuildingBridge2 className="h-full w-full text-neutral-300" />,
+        href: '/construction',
+    },
+    {
+        title: 'Contact',
+        icon: <IconMail className="h-full w-full text-neutral-300" />,
+        href: '/contact',
+    },
+    // {
+    //     title: 'Get in Touch',
+    //     icon: (
+    //         <span className="navbar__dock-cta-icon">
+    //             <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    //                 <path d="M5 12h14M12 5l7 7-7 7" />
+    //             </svg>
+    //         </span>
+    //     ),
+    //     href: '/contact',
+    // },
 ];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const location = useLocation();
+
+    const isCollapsed = scrolled && !isHovered;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,63 +78,38 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Close mobile menu on route change
-    useEffect(() => {
-        setMobileOpen(false);
-    }, [location.pathname]);
-
-    // Prevent body scroll when mobile menu is open
-    useEffect(() => {
-        document.body.style.overflow = mobileOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
-    }, [mobileOpen]);
-
     return (
         <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
             <div className="navbar__inner container">
-                <Link to="/" className="navbar__logo">
-                    <img
-                        src="/fitrock_arena/images/fitrock.png"
-                        alt="FitRock Arena Logo"
-                        className="navbar__logo-img"
-                    />
-                </Link>
-
-                {/* Desktop + Mobile links */}
-                <ul className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
-                    {NAV_LINKS.map((link) => (
-                        <li key={link.to}>
-                            <NavLink
-                                to={link.to}
-                                className={({ isActive }) =>
-                                    `navbar__link ${isActive ? 'navbar__link--active' : ''}`
-                                }
-                                end={link.to === '/'}
-                            >
-                                {link.label}
-                            </NavLink>
-                        </li>
-                    ))}
-                    <li className="navbar__cta-mobile">
-                        <Link to="/contact" className="btn btn-primary">
-                            Get in Touch
-                        </Link>
-                    </li>
-                </ul>
-
-                <Link to="/contact" className="btn btn-primary navbar__cta-desktop">
-                    Get in Touch
-                </Link>
-
-                <button
-                    className={`navbar__hamburger ${mobileOpen ? 'navbar__hamburger--open' : ''}`}
-                    onClick={() => setMobileOpen(!mobileOpen)}
-                    aria-label="Toggle navigation menu"
+                {/* Unified Floating Dock with logo + nav + CTA */}
+                <motion.div
+                    className="navbar__dock"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    layout
+                    initial={false}
+                    animate={{
+                        left: scrolled ? 24 : '50%',
+                        x: scrolled ? 0 : '-50%',
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20
+                    }}
+                    style={{
+                        position: 'absolute',
+                        top: '40%',
+                        // display: 'flex',
+                    }}
                 >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                    <FloatingDock
+                        items={DOCK_LINKS}
+                        desktopClassName={`navbar__dock-desktop ${isCollapsed ? 'navbar__dock-desktop--collapsed' : ''}`}
+                        mobileClassName="navbar__dock-mobile"
+                        collapsed={isCollapsed}
+                    />
+                </motion.div>
             </div>
         </nav>
     );

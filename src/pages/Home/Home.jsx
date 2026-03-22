@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ZoomParallax } from '@/components/ui/zoom-parallax';
+import { GridPattern } from '@/components/ui/grid-pattern';
+import { cn } from '@/lib/utils';
 import FeatureSection from '@/components/ui/feature-sectionn';
 import HeroTiles from '../../components/HeroTiles/HeroTiles';
 import './Home.css';
@@ -15,6 +17,11 @@ const PARALLAX_IMAGES = [
     { src: '/fitrock_arena/images/climbing-2.png', alt: 'Climber in action' },
     { src: '/fitrock_arena/images/about-team.png', alt: 'FitRock team' },
     { src: '/fitrock_arena/images/construction-process.png', alt: 'Construction process' },
+    { src: '/fitrock_arena/images/climb_up.jpg', alt: 'Climbing up' },
+    { src: '/fitrock_arena/images/climbing-bg.png', alt: 'Climbing background' },
+    { src: '/fitrock_arena/images/contact-bg.png', alt: 'Contact overview' },
+    { src: '/fitrock_arena/images/up2.jpg', alt: 'Bouldering up' },
+    { src: '/fitrock_arena/images/climb_up1.jpg', alt: 'Reaching the top' }
 ];
 
 gsap.registerPlugin(ScrollTrigger);
@@ -161,11 +168,31 @@ export default function Home() {
     return (
         <>
             {/* ===== HERO ===== */}
-            <section className="home-hero" ref={heroRef}>
-                <HeroTiles />
+            <section className="home-hero overflow-hidden relative" ref={heroRef}>
+                <GridPattern
+                    squares={[
+                        [4, 4],
+                        [5, 1],
+                        [8, 2],
+                        [5, 3],
+                        [5, 5],
+                        [10, 10],
+                        [12, 15],
+                        [15, 10],
+                        [10, 15],
+                        [15, 10],
+                        [10, 15],
+                        [15, 10],
+                    ]}
+                    className={cn(
+                        "[mask-image:radial-gradient(3000px_circle_at_center,white,transparent)]",
+                        "inset-x-0 inset-y-[-30%] h-[180%] skew-y-14"
+                    )}
+                />
+                {/* <HeroTiles /> */}
                 <div className="home-hero__overlay"></div>
 
-                <div className="home-hero__particles">
+                {/* <div className="home-hero__particles">
                     {[...Array(15)].map((_, i) => (
                         <div key={i} className="home-hero__particle" style={{
                             left: `${Math.random() * 100}%`,
@@ -176,7 +203,7 @@ export default function Home() {
                             height: `${2 + Math.random() * 3}px`,
                         }} />
                     ))}
-                </div>
+                </div> */}
 
                 <div className="home-hero__content container">
                     <h1 className="home-hero__title">
@@ -187,7 +214,7 @@ export default function Home() {
                         India's premier indoor climbing arena and professional wall construction.
                         Push your limits. Conquer the wall.
                     </p>
-                    <div className="home-hero__cta-group">
+                    {/* <div className="home-hero__cta-group">
                         <Link to="/climbing" className="btn btn-primary btn-pulse home-hero__cta">
                             <span>Explore Climbing</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -197,7 +224,7 @@ export default function Home() {
                         <Link to="/about" className="btn btn-secondary home-hero__cta">
                             Learn More
                         </Link>
-                    </div>
+                    </div> */}
 
                     {/* <div className="home-hero__stats">
                         <div className="home-hero__stat">

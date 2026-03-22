@@ -1,7 +1,7 @@
 'use client';
 
-import { useScroll, useTransform, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 
 interface Image {
 	src: string;
@@ -9,7 +9,7 @@ interface Image {
 }
 
 interface ZoomParallaxProps {
-	/** Array of images to be displayed in the parallax effect — max 7 images */
+	/** Array of images to be displayed in the parallax effect */
 	images: Image[];
 }
 
@@ -50,12 +50,48 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
 
 	const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
+	const numSlots = 7;
+	const [slotImageIndexes, setSlotImageIndexes] = useState(
+		Array.from({ length: numSlots }, (_, i) => i % Math.max(images.length, 1))
+	);
+
+	useEffect(() => {
+		if (images.length <= 1) return;
+
+		const interval = setInterval(() => {
+			setSlotImageIndexes(() => {
+				const available = images.map((_, i) => i);
+
+				// Shuffle available indices to get a random completely new set
+				for (let i = available.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					const temp = available[i];
+					available[i] = available[j];
+					available[j] = temp;
+				}
+
+				// Pick the first \`numSlots\` from the shuffled array
+				// (if there are fewer images than slots, it will wrap around but that is fine)
+				return Array.from(
+					{ length: numSlots },
+					(_, i) => available[i % available.length]
+				);
+			});
+		}, 2800); // Change all images every 3.5 seconds
+
+		return () => clearInterval(interval);
+	}, [images, numSlots]);
+
 	return (
 		<div ref={container} className="relative h-[300vh]">
 			<div className="sticky top-0 h-screen overflow-hidden">
-				{images.map(({ src, alt }, index) => {
+				{Array.from({ length: numSlots }).map((_, index) => {
 					const scale = scales[index % scales.length];
 					const config = IMAGE_CONFIGS[index] || IMAGE_CONFIGS[0];
+					const imageIndex = slotImageIndexes[index];
+					const currentImage = images[imageIndex];
+
+					if (!currentImage) return null;
 
 					return (
 						<motion.div
@@ -64,7 +100,7 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
 							className="absolute top-0 flex h-full w-full items-center justify-center"
 						>
 							<div
-								className="relative overflow-hidden rounded-lg"
+								className="relative overflow-hidden rounded-lg bg-black/10"
 								style={{
 									width: config.width,
 									height: config.height,
@@ -72,11 +108,18 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
 									left: config.left,
 								}}
 							>
-								<img
-									src={src || '/placeholder.svg'}
-									alt={alt || `Parallax image ${index + 1}`}
-									className="h-full w-full object-cover"
-								/>
+								<AnimatePresence>
+									<motion.img
+										key={currentImage.src}
+										src={currentImage.src || '/placeholder.svg'}
+										alt={currentImage.alt || `Parallax image ${index + 1}`}
+										className="absolute inset-0 h-full w-full object-cover"
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+										transition={{ duration: 1 }}
+									/>
+								</AnimatePresence>
 							</div>
 						</motion.div>
 					);
